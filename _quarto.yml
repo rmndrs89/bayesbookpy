@@ -1,5 +1,12 @@
 project:
   type: book
+  preview: 
+    browser: true
+    port: 4200
+  output-dir: _book
+
+execute: 
+  freeze: auto
 
 book:
   title: "Bayesian Data Analysis with Python"
@@ -16,8 +23,8 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
+  # pdf:
+  #   documentclass: scrreprt
 
 
 
