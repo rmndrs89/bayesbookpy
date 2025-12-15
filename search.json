@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bayesian Data Analysis with Python",
+    "section": "",
+    "text": "Preface\nThis book is about doing data analysis in Python using a Bayesian approach. The contents are mainly based on the Coursera specialization about Bayesian Statistics (Heiner et al. n.d.), but will gradually be supplemented with practical examples and additional theory from other resources such as Doing Bayesian Data Analysis (Kruschke 2015).\n\n\n\n\nHeiner, Matthew, Herbert Lee, Abel Rodriguez, Raquel Prado, and Jizhou Kang. n.d. “Bayesian Statistics.” Coursera.\n\n\nKruschke, John K. 2015. Doing Bayesian Data Analysis: A Tutorial with r, JAGS, and Stan. 2nd ed. Academic Press.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Kruschke (2015) for additional discussion of literate programming.\n\n\n\n\nKruschke, John K. 2015. Doing Bayesian Data Analysis: A Tutorial with r, JAGS, and Stan. 2nd ed. Academic Press.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Heiner, Matthew, Herbert Lee, Abel Rodriguez, Raquel Prado, and Jizhou\nKang. n.d. “Bayesian Statistics.” Coursera.\n\n\nKruschke, John K. 2015. Doing Bayesian Data Analysis: A Tutorial\nwith r, JAGS, and Stan. 2nd ed. Academic Press.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
