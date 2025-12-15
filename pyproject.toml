@@ -1,0 +1,18 @@
+[project]
+name = "bayesbookpy"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bambi>=0.16.0",
+    "pymc>=5.26.1",
+    "seaborn>=0.13.2",
+    "statsmodels>=0.14.6",
+]
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+    "watermark>=2.5.1",
+]

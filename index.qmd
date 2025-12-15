@@ -1,0 +1,3 @@
+# Preface {.unnumbered}
+
+This book is about doing data analysis in Python using a Bayesian approach. The contents are mainly based on the Coursera specialization about [Bayesian Statistics](https://www.coursera.org/specializations/bayesian-statistics) [@BayesianStatisticsCoursera], but will gradually be supplemented with practical examples and additional theory from other resources such as [Doing Bayesian Data Analysis](https://sites.google.com/site/doingbayesiandataanalysis/) [@Kruschke2015DBDA].

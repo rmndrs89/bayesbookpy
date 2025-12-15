@@ -1,0 +1,23 @@
+project:
+  type: book
+
+book:
+  title: "Bayesian Data Analysis with Python"
+  author: "Robbin Romijnders"
+  date: today
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+
