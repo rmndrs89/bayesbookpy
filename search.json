@@ -10,11 +10,11 @@
     ]
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
+    "objectID": "chapters/01_concepts_and_data_analysis/01_01_intro.html",
+    "href": "chapters/01_concepts_and_data_analysis/01_01_intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Kruschke (2015) for additional discussion of literate programming.\n\n\n\n\nKruschke, John K. 2015. Doing Bayesian Data Analysis: A Tutorial with r, JAGS, and Stan. 2nd ed. Academic Press.",
+    "text": "This is a book created from markdown and executable code.\nSee Kruschke (2015) for additional discussion of literate programming.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport scipy.stats\n\nxs = np.linspace(-5, 5, num=500, endpoint=False)\nys = scipy.stats.norm.pdf(x=xs, loc=0.0, scale=1)\nfig, ax = plt.subplots(figsize=(2.8, 2.8))\nax.plot(xs, ys, lw=2, c=\"gray\")\nax.set_xlabel(f\"$x$\")\nax.set_ylabel(f\"$p(x)$\")\nax.set_aspect(\"auto\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1.1: A standard normal distribution.\n\n\n\n\n\n\n\n\n\nKruschke, John K. 2015. Doing Bayesian Data Analysis: A Tutorial with r, JAGS, and Stan. 2nd ed. Academic Press.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
