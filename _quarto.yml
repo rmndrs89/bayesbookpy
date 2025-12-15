@@ -14,7 +14,7 @@ book:
   date: today
   chapters:
     - index.qmd
-    - intro.qmd
+    - chapters/01_concepts_and_data_analysis/01_01_intro.qmd
     - summary.qmd
     - references.qmd
 
@@ -23,6 +23,7 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
+    code-fold: true
   # pdf:
   #   documentclass: scrreprt
 

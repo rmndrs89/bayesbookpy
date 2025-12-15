@@ -1,0 +1,12 @@
+{
+  "hash": "4ac53b8a4c3524ca6736a5a602aadc5b",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "# Introduction\n\nThis is a book created from markdown and executable code.\n\nSee @Kruschke2015DBDA for additional discussion of literate programming.\n\n::: {#cell-fig-standard-normal .cell execution_count=1}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport scipy.stats\n\nxs = np.linspace(-5, 5, num=500, endpoint=False)\nys = scipy.stats.norm.pdf(x=xs, loc=0.0, scale=1)\nfig, ax = plt.subplots(figsize=(2.8, 2.8))\nax.plot(xs, ys, lw=2, c=\"gray\")\nax.set_xlabel(f\"$x$\")\nax.set_ylabel(f\"$p(x)$\")\nax.set_aspect(\"auto\")\nplt.tight_layout()\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![A standard normal distribution.](intro_files/figure-html/fig-standard-normal-output-1.png){#fig-standard-normal}\n:::\n:::\n\n\n",
+    "supporting": [
+      "intro_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

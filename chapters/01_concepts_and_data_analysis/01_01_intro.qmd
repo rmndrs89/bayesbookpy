@@ -1,0 +1,23 @@
+# Introduction
+
+This is a book created from markdown and executable code.
+
+See @Kruschke2015DBDA for additional discussion of literate programming.
+
+```{python}
+#| label: fig-standard-normal
+#| fig-cap: A standard normal distribution.
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.stats
+
+xs = np.linspace(-5, 5, num=500, endpoint=False)
+ys = scipy.stats.norm.pdf(x=xs, loc=0.0, scale=1)
+fig, ax = plt.subplots(figsize=(2.8, 2.8))
+ax.plot(xs, ys, lw=2, c="gray")
+ax.set_xlabel(f"$x$")
+ax.set_ylabel(f"$p(x)$")
+ax.set_aspect("auto")
+plt.tight_layout()
+plt.show()
+```
