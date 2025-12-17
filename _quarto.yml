@@ -17,8 +17,13 @@ book:
     - part: "Concepts and Data Analysis"
       chapters:
         - chapters/01_concepts_and_data_analysis/01_01_intro.qmd
+        - chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.qmd
+        - chapters/01_concepts_and_data_analysis/01_03_frequentist_inference.qmd
     - summary.qmd
     - references.qmd
+  appendices: 
+    - chapters/appendices/binary_variable.qmd
+    - chapters/appendices/continuous_variable.qmd  
 
 bibliography: references.bib
 

@@ -1,0 +1,51 @@
+# Continuous random variable
+
+We define the **cumulative distribution function (cdf)**:
+$$
+P(x) = \mbox{Pr}(X \le x)
+$$
+
+The **probability density function (pdf)** is defined as the derivative of the cdf:
+$$
+p(x) \triangleq \frac{\mathrm{d}}{\mathrm{d}x}P(x)
+$$
+
+For any continuous random variable it holds that:
+$$
+\int_{-\infty}^{\infty} p(x)\ \mathrm{d}x = 1
+$$
+
+and $p(x) \ge 0$.
+
+## Uniform distribution
+
+$$
+\begin{align}
+X &\sim \mbox{Uniform}(a, b) \\
+p(x \mid a, b) &= \frac{1}{b - a}, \quad a \le x \le b
+\end{align}
+$$
+
+## Exponential distribution
+
+The exponential distribution can be used to model events that occur at a particular rate. For example, the waiting time for the bus the come.
+
+$$
+\begin{align}
+X &\sim \mbox{Exp}(\lambda) \\
+p(x \mid \lambda) &= \lambda e^{-\lambda x}, \quad x \ge 0 \\
+\mathbb{E}[X] &= 1 / \lambda \\
+\mathbb{V}[X] &= 1 / \lambda^{2}
+\end{align}
+$$
+
+## Normal distribution
+
+$$
+\begin{align}
+X &\sim \mbox{Normal}(\mu, \sigma) \\
+p(x \mid \mu, \sigma) &= \frac{1}{\sqrt{2 \pi} \sigma} \exp\left\{-\frac{1}{2 \sigma^{2}} \left(x - \mu\right)^{2}\right\} \\
+\mathbb{E}[X] &= \mu \\
+\mathbb{V}[X] &= \sigma^{2}
+\end{align}
+$$

@@ -1,0 +1,124 @@
+# Frequentist inference
+
+Under the frequentist paradigm, we view the data as a random sample from a larger, potentially hypothetical populations.
+
+## Confidence intervals
+Let us assume that we flip a coin 100 times, and we observe 44 heads and 56 tails. We can view these 100 flips as a random sample from a much larger infinite hypothetical population of flips from this coin. In this case we can say that each flip, $X_{i}$, follows a Bournelli distribution with some probability $p$, i.e. $X_{i} \sim \mbox{Bernoulli}(p)$.
+
+What is our best estimate of the probability of getting a head, or what is our best estimate of $p$? We can also ask how confident are we in that estimate. We can start down the mathematical approach by applying the Central Limit Theorem (CLT):
+$$
+\sum_{i}^{100} X_{i} \underset{\cdot}{\overset{\cdot}{\sim}} \mbox{N}(100p, 100p(1-p))
+$$
+
+Since we have observed 44 heads, we estimate $\hat{p} = 44/100 = 0.44$. We use this value to construct a 95% confidence interval (CI):
+$$
+\begin{align}
+(100p - 1.96 \sqrt{100 p (1 - p)}&, 100p + 1.96 \sqrt{100 p (1 - p)}) \\
+(44 - 1.96 \sqrt{44 (0.56)}&, 44 + 1.96 \sqrt{44 (0.56)}) \\
+(34.3&, 53.7)
+\end{align}
+$$
+
+We're 95% confident that the true probability of getting a head is in this interval. If we ask ourselves whether we think this is a fair coin, then it is reasonable that this is a fair coin because 50 is in this interval. 
+
+```{python}
+#| label: fig-confidence-intervals-100-coin-flips
+#| fig-cap: The 95% confidence interval for 100 coin flips. We expect that the true probability of heads, depicted by the red line at 0.5, is enclosed in about 1 in 20 trials.
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.stats
+
+n_trials = 100
+n_flips = 100
+true_p = 0.5
+
+p_hat = np.zeros((n_trials,))
+for i in range(n_trials):
+    xs = scipy.stats.bernoulli(p=true_p).rvs(size=n_flips)
+    p_hat[i] = np.mean(xs)
+sd = [
+    scipy.stats.norm.ppf(0.975) * np.sqrt(n_flips * p_ * (1 - p_)) / n_flips
+    for p_ in p_hat
+]
+lower = p_hat - sd
+upper = p_hat + sd
+miss = (upper < true_p) | (lower > true_p)
+
+fig, ax = plt.subplots()
+for i in range(n_trials):
+    color = "orange" if miss[i] else "lightgray"
+    ax.errorbar(
+        i + 1, 
+        p_hat[i], 
+        yerr=sd[i],
+        ls="none",
+        marker="o",
+        c=color
+    )
+ax.axhline(true_p, ls="-", c="r")
+ax.set_xlabel("trial")
+ax.set_ylabel("$\hat{p}$")
+plt.tight_layout()
+plt.show()
+```
+
+## Likelihood function and maximum likelihood
+
+Let's do another example. Consider a hospital where 400 patients are admitted over a month for heart attacks, and a month later 72 of them have died and 328 of them have survived. We can ask, what's our estimate of the mortality rate? Under the frequentist paradigm, we must first establish our reference population. What do we think our reference population is here? One possibility is we could think about heart attack patients in the region. Another is we could think about heart attack patients that are admitted to this hospital, but over a longer period of time. 
+
+How might we do some estimation? We can say each patient comes from a Bernoulli distribution with unknown parameter $\theta$: $Y_{i} \sim \mbox{Bernoulli}(\theta)$, which means that $\mbox{Pr}(Y_{i}=1) = \theta$, where 1 encodes for having died.
+
+The probability density function for the entire dataset can be written in vector form:
+$$
+\mbox{Pr}(\mathbf{Y} = \mathbf{y} \mid \theta) = \mbox{Pr}(Y_{1} = y_{1}, Y_{2} = y_{2}, \ldots, Y_{N} = y_{N} \mid \theta)
+$$
+
+If we assume each is independent, we can write:
+$$
+\begin{align}
+\mbox{Pr}(Y_{1} = y_{1}, Y_{2} = y_{2}, \ldots, Y_{N} = y_{N} \mid \theta) &= \mbox{Pr}(Y_{1} = y_{1} \mid \theta)\ \mbox{Pr}(Y_{2} = y_{2} \mid \theta)\ \ldots\ \mbox{Pr}(Y_{N} = y_{N} \mid \theta) \\
+&= \prod_{i=1}^{N} \mbox{Pr}(Y_{i} = y_{i} \mid \theta) \\
+&= \prod_{i=1}^{N} \theta^{y_{i}}\ (1 - \theta)^{1 - y_{i}} \\
+\end{align}
+$$
+
+We can think of the latter expression as a function of $\theta$. This is the concept of a likelihood, the density function thought of as a function of the parameters:
+$$
+L(\theta \mid \mathbf{y}) = \prod_{i=1}^{N} \theta^{y_{i}}\ (1 - \theta)^{1 - y_{i}}
+$$
+
+One way to estimate $\theta$ is to choose the value that gives the largest value of the likelihood. This is referred to as the maximum likelihood estimate (MLE). 
+$$
+\hat{\theta}_{\mathrm{mle}} = \arg \max_{\theta} L(\theta \mid \mathbf{y})
+$$
+
+In practice it is often easier to maximize the natural logarithm of the likekihood, referred to as the log-likelihood:
+$$
+\ell(\theta) = \log L(\theta \mid \mathbf{y})
+$$
+
+In this case:
+$$
+\begin{align}
+\ell(\theta) &= \log\left( \prod_{i=1}^{N} \theta^{y_{i}}\ (1 - \theta)^{1 - y_{i}} \right) \\
+ &= \sum_{i=1}^{N} \log \left(\theta^{y_{i}}\ (1 - \theta)^{1 - y_{i}} \right) \\
+ &= \sum_{i=1}^{N} y_{i} \log(\theta) + (1 - y_{i}) \log(1 - \theta) \\
+ &= \left(\sum_{i=1}^{N} y_{i}\right) \log(\theta) + \left(\sum_{i=1}^{N} (1 - y_{i})\right) \log(1 - \theta) \\
+\end{align}
+$$
+
+## Computing the MLE
+We find the maximum log-likelihood by taking the derivative and setting it to zero:
+$$
+\begin{align}
+\ell'(\theta) &= \frac{1}{\theta} \left(\sum_{i=1}^{N} y_{i}\right) - \frac{1}{1 - \theta} \left(\sum_{i=1}^{N} (1 - y_{i})\right) \overset{\text{set}}{=} 0 \\ 
+&= \frac{\sum_{i=1}^{N} y_{i}}{\hat{\theta}} = \frac{\sum_{i=1}^{N}(1 - y_{i})}{1 - \hat{\theta}} \\
+&\Rightarrow \hat{\theta} = \frac{\sum_{i=1}^{N}y_{i}}{N}
+\end{align}
+$$
+
+```{python}
+p_mortality = 72 / 400.
+```
+
+This results in $\hat{p}$ = `{python} p_mortality` as the MLE of the probability.

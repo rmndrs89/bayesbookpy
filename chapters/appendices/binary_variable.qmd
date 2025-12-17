@@ -1,0 +1,59 @@
+# Binary variable
+
+## Bernoulli distribution
+
+A Bernoulli distribution is used to model a random variable that can take just two discrete values, e.g., heads or tails, or failure or success. Let's say for example that we have a fair coin. The probability that the coin lands heads up when we toss it, is denoted:
+$$
+\mbox{Pr}(X=x) = \mbox{Pr}(X=\mathrm{heads}) = \theta
+$$
+
+and the probability that it lands tails up is:
+$$
+\mbox{Pr}(X=x) = \mbox{Pr}(X=\mathrm{tails}) = 1 - \theta
+$$
+
+We can write this in short as:
+$$
+\mbox{Pr}(X=x) = \theta^{x}\ (1 - \theta)^{1-x}
+$$
+
+In general, the function that computes the probability of events which correspond to setting the random variable to each possible value is referred to as the **probability mass function (pmf)** [@Murphy2022Introduction]:
+$$
+p(x) \triangleq \mbox{Pr}(X=x)
+$$
+
+The expected value of a Bernoulli random variable is:
+$$
+\begin{align}
+\mathbb{E}[X] &= \sum_{x \in \mathcal{X}} x p(x) \\
+ &= (0) (1 - \theta) + (1) (\theta) = \theta
+\end{align}
+$$
+
+The variance, that is a measure of the spread of a distribution, is:
+$$
+\begin{align}
+\mathbb{V}[X] &= \mathbb{E}[X^{2}] - \mathbb{E}[X]^{2} \\
+\mathbb{E}[X^{2}] &= \sum_{x \in \mathcal{X}} x^{2}\ p(x) \\
+ &= (0)^{2} (1 - \theta) + (1)^{2} (\theta) = \theta \\
+\mathbb{V}[X] &= \mathbb{E}[X^{2}] - \mathbb{E}[X]^{2} \\
+ &= \theta - \theta^{2} = \theta (1 - \theta) 
+\end{align}
+$$
+
+## Binomial distribution
+
+The generalization of the Bernoulli random variables, is the **binomial distribution** where we have $N$ repeated trials. Suppose we flip a coin ten times, what is the probability of observing heads, heads, tails, heads, ... We can model the number of heads, $X$, as a function of the number of trials, $N$, and the probability of success, $\theta$:
+$$
+p(x \mid N, \theta) = \binom{N}{x} \theta^{x} (1 - \theta)^{1-x}
+$$
+
+Furthermore, for the binomial distribution we have:
+$$
+\begin{align}
+\mathbb{E}[X] &= n \theta \\
+\mathbb{V}[X] &= n \theta (1 - \theta)
+\end{align}
+$$
+
+
