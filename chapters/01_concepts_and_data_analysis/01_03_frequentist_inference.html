@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Robbin Romijnders">
-<meta name="dcterms.date" content="2025-12-17">
 
-<title>Bayesian Data Analysis with Python</title>
+<title>3&nbsp; Frequentist inference – Bayesian Data Analysis with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,48 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/01_concepts_and_data_analysis/01_01_intro.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../summary.html" rel="next">
+<link href="../../chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -92,6 +106,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -104,7 +147,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_01_intro.html">Concepts and Data Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_03_frequentist_inference.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Frequentist inference</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -119,7 +162,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Bayesian Data Analysis with Python</a> 
+      <a href="../../">Bayesian Data Analysis with Python</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -131,7 +174,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -146,19 +189,19 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01_concepts_and_data_analysis/01_01_intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/01_concepts_and_data_analysis/01_01_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics of probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01_concepts_and_data_analysis/01_03_frequentist_inference.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/01_concepts_and_data_analysis/01_03_frequentist_inference.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Frequentist inference</span></span></a>
   </div>
 </li>
@@ -166,13 +209,13 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../../summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -187,13 +230,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/appendices/binary_variable.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/appendices/binary_variable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Binary variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/appendices/continuous_variable.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/appendices/continuous_variable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Continuous random variable</span></span></a>
   </div>
 </li>
@@ -209,35 +252,25 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link active" data-scroll-target="#confidence-intervals"><span class="header-section-number">3.1</span> Confidence intervals</a></li>
+  <li><a href="#likelihood-function-and-maximum-likelihood" id="toc-likelihood-function-and-maximum-likelihood" class="nav-link" data-scroll-target="#likelihood-function-and-maximum-likelihood"><span class="header-section-number">3.2</span> Likelihood function and maximum likelihood</a></li>
+  <li><a href="#computing-the-mle" id="toc-computing-the-mle" class="nav-link" data-scroll-target="#computing-the-mle"><span class="header-section-number">3.3</span> Computing the MLE</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_01_intro.html">Concepts and Data Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_03_frequentist_inference.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Frequentist inference</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Bayesian Data Analysis with Python</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Frequentist inference</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Robbin Romijnders </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">December 17, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -247,19 +280,125 @@ div.csl-indent {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>This book is about doing data analysis in Python using a Bayesian approach. The contents are mainly based on the Coursera specialization about <a href="https://www.coursera.org/specializations/bayesian-statistics">Bayesian Statistics</a> <span class="citation" data-cites="BayesianStatisticsCoursera">(<a href="references.html#ref-BayesianStatisticsCoursera" role="doc-biblioref">Heiner et al. n.d.</a>)</span>, but will gradually be supplemented with practical examples and additional theory from other resources such as <a href="https://sites.google.com/site/doingbayesiandataanalysis/">Doing Bayesian Data Analysis</a> <span class="citation" data-cites="Kruschke2015DBDA">(<a href="references.html#ref-Kruschke2015DBDA" role="doc-biblioref">Kruschke 2015</a>)</span>.</p>
+<p>Under the frequentist paradigm, we view the data as a random sample from a larger, potentially hypothetical populations.</p>
+<section id="confidence-intervals" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">3.1</span> Confidence intervals</h2>
+<p>Let us assume that we flip a coin 100 times, and we observe 44 heads and 56 tails. We can view these 100 flips as a random sample from a much larger infinite hypothetical population of flips from this coin. In this case we can say that each flip, <span class="math inline">\(X_{i}\)</span>, follows a Bournelli distribution with some probability <span class="math inline">\(p\)</span>, i.e.&nbsp;<span class="math inline">\(X_{i} \sim \mbox{Bernoulli}(p)\)</span>.</p>
+<p>What is our best estimate of the probability of getting a head, or what is our best estimate of <span class="math inline">\(p\)</span>? We can also ask how confident are we in that estimate. We can start down the mathematical approach by applying the Central Limit Theorem (CLT): <span class="math display">\[
+\sum_{i}^{100} X_{i} \underset{\cdot}{\overset{\cdot}{\sim}} \mbox{N}(100p, 100p(1-p))
+\]</span></p>
+<p>Since we have observed 44 heads, we estimate <span class="math inline">\(\hat{p} = 44/100 = 0.44\)</span>. We use this value to construct a 95% confidence interval (CI): <span class="math display">\[
+\begin{align}
+(100p - 1.96 \sqrt{100 p (1 - p)}&amp;, 100p + 1.96 \sqrt{100 p (1 - p)}) \\
+(44 - 1.96 \sqrt{44 (0.56)}&amp;, 44 + 1.96 \sqrt{44 (0.56)}) \\
+(34.3&amp;, 53.7)
+\end{align}
+\]</span></p>
+<p>We’re 95% confident that the true probability of getting a head is in this interval. If we ask ourselves whether we think this is a fair coin, then it is reasonable that this is a fair coin because 50 is in this interval.</p>
+<div id="cell-fig-confidence-intervals-100-coin-flips" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>n_trials <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n_flips <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>true_p <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>p_hat <span class="op">=</span> np.zeros((n_trials,))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_trials):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    xs <span class="op">=</span> scipy.stats.bernoulli(p<span class="op">=</span>true_p).rvs(size<span class="op">=</span>n_flips)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    p_hat[i] <span class="op">=</span> np.mean(xs)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sd <span class="op">=</span> [</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    scipy.stats.norm.ppf(<span class="fl">0.975</span>) <span class="op">*</span> np.sqrt(n_flips <span class="op">*</span> p_ <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p_)) <span class="op">/</span> n_flips</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p_ <span class="kw">in</span> p_hat</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> p_hat <span class="op">-</span> sd</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> p_hat <span class="op">+</span> sd</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>miss <span class="op">=</span> (upper <span class="op">&lt;</span> true_p) <span class="op">|</span> (lower <span class="op">&gt;</span> true_p)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_trials):</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">"orange"</span> <span class="cf">if</span> miss[i] <span class="cf">else</span> <span class="st">"lightgray"</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    ax.errorbar(</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+</span> <span class="dv">1</span>, </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        p_hat[i], </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        yerr<span class="op">=</span>sd[i],</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        ls<span class="op">=</span><span class="st">"none"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        marker<span class="op">=</span><span class="st">"o"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        c<span class="op">=</span>color</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>ax.axhline(true_p, ls<span class="op">=</span><span class="st">"-"</span>, c<span class="op">=</span><span class="st">"r"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"trial"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"$</span><span class="er">\</span><span class="st">hat</span><span class="sc">{p}</span><span class="st">$"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-confidence-intervals-100-coin-flips" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confidence-intervals-100-coin-flips-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01_03_frequentist_inference_files/figure-html/fig-confidence-intervals-100-coin-flips-output-1.png" width="661" height="470" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confidence-intervals-100-coin-flips-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: The 95% confidence interval for 100 coin flips. We expect that the true probability of heads, depicted by the red line at 0.5, is enclosed in about 1 in 20 trials.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="likelihood-function-and-maximum-likelihood" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="likelihood-function-and-maximum-likelihood"><span class="header-section-number">3.2</span> Likelihood function and maximum likelihood</h2>
+<p>Let’s do another example. Consider a hospital where 400 patients are admitted over a month for heart attacks, and a month later 72 of them have died and 328 of them have survived. We can ask, what’s our estimate of the mortality rate? Under the frequentist paradigm, we must first establish our reference population. What do we think our reference population is here? One possibility is we could think about heart attack patients in the region. Another is we could think about heart attack patients that are admitted to this hospital, but over a longer period of time.</p>
+<p>How might we do some estimation? We can say each patient comes from a Bernoulli distribution with unknown parameter <span class="math inline">\(\theta\)</span>: <span class="math inline">\(Y_{i} \sim \mbox{Bernoulli}(\theta)\)</span>, which means that <span class="math inline">\(\mbox{Pr}(Y_{i}=1) = \theta\)</span>, where 1 encodes for having died.</p>
+<p>The probability density function for the entire dataset can be written in vector form: <span class="math display">\[
+\mbox{Pr}(\mathbf{Y} = \mathbf{y} \mid \theta) = \mbox{Pr}(Y_{1} = y_{1}, Y_{2} = y_{2}, \ldots, Y_{N} = y_{N} \mid \theta)
+\]</span></p>
+<p>If we assume each is independent, we can write: <span class="math display">\[
+\begin{align}
+\mbox{Pr}(Y_{1} = y_{1}, Y_{2} = y_{2}, \ldots, Y_{N} = y_{N} \mid \theta) &amp;= \mbox{Pr}(Y_{1} = y_{1} \mid \theta)\ \mbox{Pr}(Y_{2} = y_{2} \mid \theta)\ \ldots\ \mbox{Pr}(Y_{N} = y_{N} \mid \theta) \\
+&amp;= \prod_{i=1}^{N} \mbox{Pr}(Y_{i} = y_{i} \mid \theta) \\
+&amp;= \prod_{i=1}^{N} \theta^{y_{i}}\ (1 - \theta)^{1 - y_{i}} \\
+\end{align}
+\]</span></p>
+<p>We can think of the latter expression as a function of <span class="math inline">\(\theta\)</span>. This is the concept of a likelihood, the density function thought of as a function of the parameters: <span class="math display">\[
+L(\theta \mid \mathbf{y}) = \prod_{i=1}^{N} \theta^{y_{i}}\ (1 - \theta)^{1 - y_{i}}
+\]</span></p>
+<p>One way to estimate <span class="math inline">\(\theta\)</span> is to choose the value that gives the largest value of the likelihood. This is referred to as the maximum likelihood estimate (MLE). <span class="math display">\[
+\hat{\theta}_{\mathrm{mle}} = \arg \max_{\theta} L(\theta \mid \mathbf{y})
+\]</span></p>
+<p>In practice it is often easier to maximize the natural logarithm of the likekihood, referred to as the log-likelihood: <span class="math display">\[
+\ell(\theta) = \log L(\theta \mid \mathbf{y})
+\]</span></p>
+<p>In this case: <span class="math display">\[
+\begin{align}
+\ell(\theta) &amp;= \log\left( \prod_{i=1}^{N} \theta^{y_{i}}\ (1 - \theta)^{1 - y_{i}} \right) \\
+&amp;= \sum_{i=1}^{N} \log \left(\theta^{y_{i}}\ (1 - \theta)^{1 - y_{i}} \right) \\
+&amp;= \sum_{i=1}^{N} y_{i} \log(\theta) + (1 - y_{i}) \log(1 - \theta) \\
+&amp;= \left(\sum_{i=1}^{N} y_{i}\right) \log(\theta) + \left(\sum_{i=1}^{N} (1 - y_{i})\right) \log(1 - \theta) \\
+\end{align}
+\]</span></p>
+</section>
+<section id="computing-the-mle" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="computing-the-mle"><span class="header-section-number">3.3</span> Computing the MLE</h2>
+<p>We find the maximum log-likelihood by taking the derivative and setting it to zero: <span class="math display">\[
+\begin{align}
+\ell'(\theta) &amp;= \frac{1}{\theta} \left(\sum_{i=1}^{N} y_{i}\right) - \frac{1}{1 - \theta} \left(\sum_{i=1}^{N} (1 - y_{i})\right) \overset{\text{set}}{=} 0 \\
+&amp;= \frac{\sum_{i=1}^{N} y_{i}}{\hat{\theta}} = \frac{\sum_{i=1}^{N}(1 - y_{i})}{1 - \hat{\theta}} \\
+&amp;\Rightarrow \hat{\theta} = \frac{\sum_{i=1}^{N}y_{i}}{N}
+\end{align}
+\]</span></p>
+<div id="d65a73e1" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p_mortality <span class="op">=</span> <span class="dv">72</span> <span class="op">/</span> <span class="fl">400.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>This results in <span class="math inline">\(\hat{p}\)</span> = 0.18 as the MLE of the probability.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-BayesianStatisticsCoursera" class="csl-entry" role="listitem">
-Heiner, Matthew, Herbert Lee, Abel Rodriguez, Raquel Prado, and Jizhou Kang. n.d. <span>“<span>Bayesian Statistics</span>.”</span> Coursera.
-</div>
-<div id="ref-Kruschke2015DBDA" class="csl-entry" role="listitem">
-Kruschke, John K. 2015. <em>Doing Bayesian Data Analysis: A Tutorial with r, JAGS, and Stan</em>. 2nd ed. Academic Press.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -665,10 +804,13 @@ Kruschke, John K. 2015. <em>Doing Bayesian Data Analysis: A Tutorial with r, JAG
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.html" class="pagination-link" aria-label="Basics of probability">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics of probability</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/01_concepts_and_data_analysis/01_01_intro.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
