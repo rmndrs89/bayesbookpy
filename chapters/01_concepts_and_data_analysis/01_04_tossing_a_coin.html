@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Basics of probability – Bayesian Data Analysis with Python</title>
+<title>4&nbsp; Tossing a coin – Bayesian Data Analysis with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,27 +55,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -85,8 +65,8 @@ div.csl-indent {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/01_concepts_and_data_analysis/01_03_frequentist_inference.html" rel="next">
-<link href="../../chapters/01_concepts_and_data_analysis/01_01_intro.html" rel="prev">
+<link href="../../summary.html" rel="next">
+<link href="../../chapters/01_concepts_and_data_analysis/01_03_frequentist_inference.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -167,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_01_intro.html">Concepts and Data Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics of probability</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_01_intro.html">Concepts and Data Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_04_tossing_a_coin.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tossing a coin</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -215,7 +195,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics of probability</span></span></a>
   </div>
 </li>
@@ -227,7 +207,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/01_concepts_and_data_analysis/01_04_tossing_a_coin.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/01_concepts_and_data_analysis/01_04_tossing_a_coin.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tossing a coin</span></span></a>
   </div>
 </li>
@@ -278,9 +258,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#random-variables" id="toc-random-variables" class="nav-link active" data-scroll-target="#random-variables"><span class="header-section-number">2.1</span> Random variables</a>
+  <li><a href="#frequentist-inference" id="toc-frequentist-inference" class="nav-link active" data-scroll-target="#frequentist-inference"><span class="header-section-number">4.1</span> Frequentist inference</a></li>
+  <li><a href="#bayesian-inference" id="toc-bayesian-inference" class="nav-link" data-scroll-target="#bayesian-inference"><span class="header-section-number">4.2</span> Bayesian inference</a></li>
+  <li><a href="#continuous" id="toc-continuous" class="nav-link" data-scroll-target="#continuous"><span class="header-section-number">4.3</span> Continuous</a>
   <ul class="collapse">
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events"><span class="header-section-number">2.1.1</span> Events</a></li>
+  <li><a href="#equal-tailed-intervals" id="toc-equal-tailed-intervals" class="nav-link" data-scroll-target="#equal-tailed-intervals"><span class="header-section-number">4.3.1</span> Equal-tailed intervals</a></li>
+  <li><a href="#highest-posterior-density-hpd" id="toc-highest-posterior-density-hpd" class="nav-link" data-scroll-target="#highest-posterior-density-hpd"><span class="header-section-number">4.3.2</span> Highest-posterior density (HPD)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -288,9 +271,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_01_intro.html">Concepts and Data Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics of probability</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_01_intro.html">Concepts and Data Analysis</a></li><li class="breadcrumb-item"><a href="../../chapters/01_concepts_and_data_analysis/01_04_tossing_a_coin.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tossing a coin</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics of probability</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tossing a coin</span></h1>
 </div>
 
 
@@ -307,81 +290,214 @@ window.Quarto = {
 </header>
 
 
-<p>Statistics is the study of uncertainty. How do we measure uncertainty? Typically we deal with uncertainty by means of probabilities <span class="citation" data-cites="Kruschke2015DBDA">(<a href="../../references.html#ref-Kruschke2015DBDA" role="doc-biblioref">Kruschke 2015</a>)</span>. But what are then probabilities?</p>
-<p>There are roughly three different frameworks to define probabilities: the <strong>classical</strong> framework, the <strong>frequentist</strong> framework, and the <strong>Bayesian</strong> framework.</p>
-<p>In general, a probability, under any of these frameworks, is just a way of assigning numbers to a set of mutually exclusive possibilities. The numbers, called “<em>probabilities</em>”, just need to satisfy three properties <span class="citation" data-cites="Kolmogorov2018ProbTheory">(<a href="../../references.html#ref-Kolmogorov2018ProbTheory" role="doc-biblioref">Kolmogorov 2018</a>)</span>:</p>
-<ol type="1">
-<li>A probability value must be non-negative (i.e., greater than or equal to zero).</li>
-<li>The sum of the probabilities across all events in the sample space must be 1.0</li>
-<li>For any two mutually exclusive events, the probability that one or the other occurs is the sum of their individual probabilities.</li>
-</ol>
-<p>Under the classical framework, outcomes that are equally likely have equal probabilities. For example, when rolling a fair die, there are six possible outcomes, and they’re all equally likely, thus the probability of rolling a four is just <span class="math inline">\(\mbox{Pr}(X = 4) = \frac{1}{6}\)</span>.</p>
-<p>Under the frequentist framework, probabilities are regarded to as long-run relative frequencies.</p>
-<div id="cell-fig-rolling-dice" class="cell" data-execution_count="1">
+<section id="frequentist-inference" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="frequentist-inference"><span class="header-section-number">4.1</span> Frequentist inference</h2>
+<p>Suppose your brother has a coin which you know to be loaded so that it comes up heads 70% of the time. He then comes to you with some coin, you’re not sure which one and he wants to make a bet with you that it’s going to come up heads. You’re not sure of it’s the loaded coin or if it’s just a fair one.</p>
+<p>Therefore he gives you a chance to flip it five times and just check it out. You flip it five times and you get two heads and three tails. Now you have to make a decision. Which coin do you think it is and how sure are you about that?</p>
+<p>We start by defining the unknown parameter <span class="math inline">\(\theta\)</span>, that is either the coin is fair or it’s loaded.</p>
+<p>The data likelihood follow a binomial distribution, so we can write: <span class="math display">\[
+\begin{align}
+\theta &amp;\in \left\{\mathrm{fair}, \mathrm{loaded} \right\} \\
+X &amp;\sim \mbox{Bin}(5, p) \\
+\Rightarrow p(x \mid \theta) &amp;= \begin{cases}
+\binom{5}{x} \left(\frac{1}{2}\right)^{5} &amp; \text{if }\theta \text{ is fair} \\
+\binom{5}{x} (0.7)^{x} (0.3)^{5-x} &amp; \text{if }\theta \text{ is loaded} \\
+\end{cases} \\
+&amp;= \binom{5}{x} \left(\frac{1}{2}\right)^{5} \mathbb{I}_{\left\{\theta=\text{fair}\right\}} + \binom{5}{x} (0.7)^{x} (0.3)^{5-x} \mathbb{I}_{\left\{\theta=\text{loaded}\right\}}
+\end{align}
+\]</span></p>
+<p>In this case we have observed <span class="math inline">\(x = 2\)</span>, so what is the likelihood: <span class="math display">\[
+p(\theta \mid X=2) = \begin{cases}
+\binom{5}{2} \left(\frac{1}{2}\right)^{5} &amp; \text{if }\theta \text{ is fair} \\
+\binom{5}{2} (0.7)^{2} (0.3)^{5-2} &amp; \text{if }\theta \text{ is loaded} \\
+\end{cases}
+\]</span></p>
+<div id="cell-fig-likelihood-two-heads" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">4_000</span>  <span class="co"># number of rolls</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.random.choice(a<span class="op">=</span><span class="dv">6</span>, size<span class="op">=</span>N, replace<span class="op">=</span><span class="va">True</span>, p<span class="op">=</span>np.ones(<span class="dv">6</span>)<span class="op">/</span><span class="dv">6</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    np.arange(<span class="dv">1</span>, N <span class="op">+</span> <span class="dv">1</span>),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    [np.mean(xs[:roll] <span class="op">==</span> <span class="dv">3</span>) <span class="cf">for</span> roll <span class="kw">in</span> np.arange(<span class="dv">1</span>, N <span class="op">+</span> <span class="dv">1</span>)]</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">1.</span><span class="op">/</span><span class="dv">6</span>, c<span class="op">=</span><span class="st">"gray"</span>, ls<span class="op">=</span><span class="st">"-."</span>, label<span class="op">=</span><span class="ss">f"1/6"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Number of rolls"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="ss">f"Pr($X$=4)"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>lls <span class="op">=</span> [</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    scipy.stats.binom.pmf(k<span class="op">=</span><span class="dv">2</span>, n<span class="op">=</span><span class="dv">5</span>, p<span class="op">=</span><span class="fl">0.5</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    scipy.stats.binom.pmf(k<span class="op">=</span><span class="dv">2</span>, n<span class="op">=</span><span class="dv">5</span>, p<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span>np.array([<span class="dv">0</span>, <span class="dv">1</span>]), y<span class="op">=</span>lls)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> container <span class="kw">in</span> ax.containers:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    ax.bar_label(container, fmt<span class="op">=</span><span class="st">"</span><span class="sc">%.3f</span><span class="st">"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="st">"fair"</span>, <span class="st">"loaded"</span>])</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="ss">f"$p$($</span><span class="ch">\\</span><span class="ss">theta$ | $X$=2)"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ax.spines[[<span class="st">"top"</span>, <span class="st">"right"</span>]].set_visible(<span class="va">False</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display">
-<div id="fig-rolling-dice" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rolling-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01_02_basics_of_probability_files/figure-html/fig-rolling-dice-output-1.png" class="img-fluid figure-img">
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_43757/2665880107.py:15: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(["fair", "loaded"])</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rolling-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: The long-run relative frequency of rolling a 4 with a fair six-sided die.
+<div class="cell-output cell-output-display">
+<div id="fig-likelihood-two-heads" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-likelihood-two-heads-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01_04_tossing_a_coin_files/figure-html/fig-likelihood-two-heads-output-2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-likelihood-two-heads-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: The likelihood of observing two heads in five coin flips for the fair and loaded coin.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="random-variables" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="random-variables"><span class="header-section-number">2.1</span> Random variables</h2>
-<p>Suppose that <span class="math inline">\(X\)</span> represents some unknown quantity of interest. If the value of <span class="math inline">\(X\)</span> is unknown, or could change, we call it a <strong>random variable</strong>. The set of possible values, denoted <span class="math inline">\(\mathcal{X}\)</span>, is called the <strong>sample space</strong>. An <strong>event</strong> is a set of outcomes from a given sample space <span class="citation" data-cites="Murphy2022Introduction">(<a href="../../references.html#ref-Murphy2022Introduction" role="doc-biblioref">Murphy 2022</a>)</span>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>This point estimate is great, but how sure are we? That is not an easy question to answer in the frequentist paradigm. We also might like to know the probability that the coin is fair, given that we observed two heads. In the frequentist paradigm, the coin is a physical quantity. It’s a fixed coin, and therefore it has a fixed probability of coming up heads. That probability is either 0 or 1.</p>
+</section>
+<section id="bayesian-inference" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="bayesian-inference"><span class="header-section-number">4.2</span> Bayesian inference</h2>
+<p>With the Bayesian approach, you can easily incorporate previous knowledge. For example, since we know our brother pretty well, we have a prior belief of 60% that he’s brought the loaded coin. We can then used Bayes’ theorem to compute the posterior probability: <span class="math display">\[
+\begin{align}
+p(\theta \mid x) &amp;= p(x \mid \theta)\ p(\theta) / \sum_{\theta}p(x \mid \theta)\ p(\theta) \\
+&amp;= \frac{\binom{5}{x} \left[ \left(\frac{1}{2}\right)^{5} (0.4) \mathbb{I}_{\left\{\theta=\mathrm{fair} \right\}} + \left(0.7\right)^{x} \left(0.3\right)^{5-x} (0.6) \mathbb{I}_{\left\{\theta=\mathrm{loaded} \right\}} \right]}{\binom{5}{x} \left[ \left(\frac{1}{2}\right)^{5} (0.4) + \left(0.7\right)^{x} \left(0.3\right)^{5-x} (0.6) \right]}
+\end{align}
+\]</span></p>
+<div id="cb9083db" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prior_ <span class="op">=</span> np.array([<span class="fl">0.4</span>, <span class="fl">0.6</span>])  <span class="co"># prior probability for theta</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>probs_ <span class="op">=</span> np.array([<span class="fl">0.5</span>, <span class="fl">0.7</span>])  <span class="co"># probability of heads for both cases</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the posterior probability</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>posterior_ <span class="op">=</span> np.asarray([</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    scipy.stats.binom.pmf(k<span class="op">=</span><span class="dv">2</span>, n<span class="op">=</span><span class="dv">5</span>, p<span class="op">=</span>p) <span class="op">*</span> p0</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p, p0 <span class="kw">in</span> <span class="bu">zip</span>(probs_, prior_)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>posterior_ <span class="op">/=</span> np.<span class="bu">sum</span>(posterior_)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span>np.array([<span class="dv">0</span>, <span class="dv">1</span>]), y<span class="op">=</span>posterior_)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> container <span class="kw">in</span> ax.containers:</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    ax.bar_label(container, fmt<span class="op">=</span><span class="st">"</span><span class="sc">%.3f</span><span class="st">"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="st">"fair"</span>, <span class="st">"loaded"</span>])</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="ss">f"$p$($</span><span class="ch">\\</span><span class="ss">theta$ | $X$=2)"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="dv">0</span>, <span class="fl">0.8</span>))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ax.spines[[<span class="st">"top"</span>, <span class="st">"right"</span>]].set_visible(<span class="va">False</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_43757/2217390571.py:15: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(["fair", "loaded"])</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Example: random variables
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_04_tossing_a_coin_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>If <span class="math inline">\(X\)</span> represents the face of a dice that is rolled, i.e., <span class="math inline">\(\mathcal{X} = \left\{1, 2, \ldots, 6 \right\}\)</span>, the event of “<em>seeing a 1</em>” is denoted <span class="math inline">\(X = 1\)</span>, the event of “<em>seeing an odd number</em>” is <span class="math inline">\(X \in \left\{1, 3, 5 \right\}\)</span>.</p>
+</div>
+<p>So our posterior probability that this is the loaded coin works out to be 0.388. Isn’t that a much more satisfying answer? Under the Bayesian approach, we get a probability, and we can actually interpret this probability.</p>
+<p>We can also examine what would happen under different choices of prior. We did this calculation with the prior probability of 0.6 for the coin being loaded, but we might have a different idea and want to use a different probability. We can use anything between zero and one.</p>
+<div id="d0212150" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prior_ = np.array([0.4, 0.6])  # prior probability for theta</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>probs_ <span class="op">=</span> np.array([<span class="fl">0.5</span>, <span class="fl">0.7</span>])  <span class="co"># probability of heads for both cases</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">2</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, x <span class="kw">in</span> <span class="bu">zip</span>(axs, [<span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.9</span>]):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    prior_ <span class="op">=</span> np.array([<span class="dv">1</span> <span class="op">-</span> x, x])</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    posterior_ <span class="op">=</span> np.asarray([</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        scipy.stats.binom.pmf(k<span class="op">=</span><span class="dv">2</span>, n<span class="op">=</span><span class="dv">5</span>, p<span class="op">=</span>p) <span class="op">*</span> p0</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> p, p0 <span class="kw">in</span> <span class="bu">zip</span>(probs_, prior_)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    posterior_ <span class="op">/=</span> np.<span class="bu">sum</span>(posterior_)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    sns.barplot(x<span class="op">=</span>np.array([<span class="dv">0</span>, <span class="dv">1</span>]), y<span class="op">=</span>posterior_, ax<span class="op">=</span>ax)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> container <span class="kw">in</span> ax.containers:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        ax.bar_label(container, fmt<span class="op">=</span><span class="st">"</span><span class="sc">%.3f</span><span class="st">"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"$p$($</span><span class="ch">\\</span><span class="ss">theta$)=</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels([<span class="st">"fair"</span>, <span class="st">"loaded"</span>])</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    ax.spines[[<span class="st">"top"</span>, <span class="st">"right"</span>]].set_visible(<span class="va">False</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="ss">f"$p$($</span><span class="ch">\\</span><span class="ss">theta$ | $X$=2)"</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylim((<span class="dv">0</span>, <span class="fl">1.0</span>))</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_04_tossing_a_coin_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<section id="events" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="events"><span class="header-section-number">2.1.1</span> Events</h3>
-<p>The expression <span class="math inline">\(\mbox{Pr}(A)\)</span> is used to denote the probability with which you believe an event <span class="math inline">\(A\)</span> is true. If an event will definitely happen, we write <span class="math inline">\(\mbox{Pr}(A)=1\)</span> and if an event is definitely not happening we write <span class="math inline">\(\mbox{Pr}(A)=0\)</span>. Furthermore, the probability of <span class="math inline">\(A\)</span> not happening is denoted <span class="math inline">\(\mbox{Pr}(\bar{A}) = 1 - \mbox{Pr}(A)\)</span>.</p>
+</div>
+</section>
+<section id="continuous" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="continuous"><span class="header-section-number">4.3</span> Continuous</h2>
+<div id="3f502378" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">1</span>], lw<span class="op">=</span><span class="dv">2</span>, c<span class="op">=</span><span class="st">"tab:orange"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].plot([<span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">1</span>], lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"tab:orange"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].plot([<span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"tab:orange"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">2</span>], lw<span class="op">=</span><span class="dv">2</span>, c<span class="op">=</span><span class="st">"tab:orange"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].plot([<span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">2</span>], lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"tab:orange"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axs:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ax.spines[[<span class="st">"top"</span>, <span class="st">"right"</span>]].set_visible(<span class="va">False</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="ss">f"$</span><span class="ch">\\</span><span class="ss">theta$"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="ss">f"$p$($</span><span class="ch">\\</span><span class="ss">theta$)"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">"prior"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="ss">f"$p$($</span><span class="ch">\\</span><span class="ss">theta$ | $X$=1)"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"posterior"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_04_tossing_a_coin_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can look at prior and posterior interval estimates. Under the prior we have: <span class="math display">\[
+\begin{align}
+\mbox{Pr}(0.025 \le \theta \le 0.975) &amp;= 0.95 \\
+\mbox{Pr}(\theta &gt; 0.05) &amp;= 0.95 \\
+\end{align}
+\]</span></p>
+<p>Under the posterior we have: <span class="math display">\[
+\begin{align}
+\mbox{Pr}(0.025 \le \theta \le 0.975) &amp;= \int_{0.025}^{0.975} 2 \theta\ \mathrm{d}\theta = (0.975)^{2} - (0.025)^{2} = 0.95\\
+\mbox{Pr}(\theta &gt; 0.05) &amp;= 1 - (0.05)^{2} = 0.9975 \\
+\end{align}
+\]</span></p>
+<p>We can also ask what is an interval that contains 95% of the posterior probability?</p>
+<p>There are two main types of intervals that are of interest in the Bayesian paradigm:<br>
+1. equal-tailed intervals<br>
+2. highest posterior density intervals</p>
+<section id="equal-tailed-intervals" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="equal-tailed-intervals"><span class="header-section-number">4.3.1</span> Equal-tailed intervals</h3>
+<p>We put an equal amount of probability in each tail. Thus, to make a 95% interval we put 0.025 in each tail. <span class="math display">\[
+\begin{align}
+p(\theta &lt; q \mid Y=1) &amp;= \int_{0}^{q} 2 \theta\ \mathrm{d}\theta = q^{2} \\
+p(\sqrt{0.025} \le \theta \le \sqrt{0.975}) &amp;= 0.95
+\end{align}
+\]</span></p>
+</section>
+<section id="highest-posterior-density-hpd" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="highest-posterior-density-hpd"><span class="header-section-number">4.3.2</span> Highest-posterior density (HPD)</h3>
+<p>Where in the density is it hightest? <span class="math display">\[
+p(\theta &gt; \sqrt{0.05} \mid Y=1) = p(\theta &gt; 0.224 \mid Y=1) = 0.95
+\]</span></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-Kolmogorov2018ProbTheory" class="csl-entry" role="listitem">
-Kolmogorov, Andreĭ Nikolaevich. 2018. <em>Foundations of the Theory of Probability: Second English Edition</em>. 2nd ed. Dover Publications.
-</div>
-<div id="ref-Kruschke2015DBDA" class="csl-entry" role="listitem">
-Kruschke, John K. 2015. <em>Doing Bayesian Data Analysis: A Tutorial with r, JAGS, and Stan</em>. 2nd ed. Academic Press.
-</div>
-<div id="ref-Murphy2022Introduction" class="csl-entry" role="listitem">
-Murphy, Kevin P. 2022. <em>Probabilistic Machine Learning: An Introduction</em>. MIT Press.
-</div>
-</div>
 </section>
 </section>
 
@@ -788,13 +904,13 @@ Murphy, Kevin P. 2022. <em>Probabilistic Machine Learning: An Introduction</em>.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/01_concepts_and_data_analysis/01_01_intro.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="../../chapters/01_concepts_and_data_analysis/01_03_frequentist_inference.html" class="pagination-link" aria-label="Frequentist inference">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Frequentist inference</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/01_concepts_and_data_analysis/01_03_frequentist_inference.html" class="pagination-link" aria-label="Frequentist inference">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Frequentist inference</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

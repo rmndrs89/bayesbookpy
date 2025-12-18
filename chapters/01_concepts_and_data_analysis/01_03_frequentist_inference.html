@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../summary.html" rel="next">
+<link href="../../chapters/01_concepts_and_data_analysis/01_04_tossing_a_coin.html" rel="next">
 <link href="../../chapters/01_concepts_and_data_analysis/01_02_basics_of_probability.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -205,12 +205,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Frequentist inference</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/01_concepts_and_data_analysis/01_04_tossing_a_coin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tossing a coin</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -255,6 +261,7 @@ window.Quarto = {
   <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link active" data-scroll-target="#confidence-intervals"><span class="header-section-number">3.1</span> Confidence intervals</a></li>
   <li><a href="#likelihood-function-and-maximum-likelihood" id="toc-likelihood-function-and-maximum-likelihood" class="nav-link" data-scroll-target="#likelihood-function-and-maximum-likelihood"><span class="header-section-number">3.2</span> Likelihood function and maximum likelihood</a></li>
   <li><a href="#computing-the-mle" id="toc-computing-the-mle" class="nav-link" data-scroll-target="#computing-the-mle"><span class="header-section-number">3.3</span> Computing the MLE</a></li>
+  <li><a href="#plotting-the-likelihoood" id="toc-plotting-the-likelihoood" class="nav-link" data-scroll-target="#plotting-the-likelihoood"><span class="header-section-number">3.4</span> Plotting the likelihoood</a></li>
   </ul>
 </nav>
     </div>
@@ -335,11 +342,17 @@ window.Quarto = {
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:34: SyntaxWarning: invalid escape sequence '\h'
+&lt;&gt;:34: SyntaxWarning: invalid escape sequence '\h'
+/tmp/ipykernel_21084/3621781736.py:34: SyntaxWarning: invalid escape sequence '\h'
+  ax.set_ylabel("$\hat{p}$")</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div id="fig-confidence-intervals-100-coin-flips" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-confidence-intervals-100-coin-flips-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="01_03_frequentist_inference_files/figure-html/fig-confidence-intervals-100-coin-flips-output-1.png" width="661" height="470" class="figure-img">
+<img src="01_03_frequentist_inference_files/figure-html/fig-confidence-intervals-100-coin-flips-output-2.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confidence-intervals-100-coin-flips-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.1: The 95% confidence interval for 100 coin flips. We expect that the true probability of heads, depicted by the red line at 0.5, is enclosed in about 1 in 20 trials.
@@ -390,13 +403,38 @@ L(\theta \mid \mathbf{y}) = \prod_{i=1}^{N} \theta^{y_{i}}\ (1 - \theta)^{1 - y_
 &amp;\Rightarrow \hat{\theta} = \frac{\sum_{i=1}^{N}y_{i}}{N}
 \end{align}
 \]</span></p>
-<div id="d65a73e1" class="cell" data-execution_count="2">
+<div id="ede32160" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p_mortality <span class="op">=</span> <span class="dv">72</span> <span class="op">/</span> <span class="fl">400.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p_mortality <span class="op">=</span> <span class="dv">72</span> <span class="op">/</span> <span class="fl">400.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>This results in <span class="math inline">\(\hat{p}\)</span> = 0.18 as the MLE of the probability.</p>
+</section>
+<section id="plotting-the-likelihoood" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="plotting-the-likelihoood"><span class="header-section-number">3.4</span> Plotting the likelihoood</h2>
+<div id="54d1452b" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> likelihood(n: <span class="bu">int</span>, y: <span class="bu">int</span>, theta: <span class="bu">float</span> <span class="op">|</span> np.ndarray[<span class="bu">float</span>]) <span class="op">-&gt;</span> <span class="bu">float</span> <span class="op">|</span> np.ndarray[<span class="bu">float</span>]:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta<span class="op">**</span>y <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> theta)<span class="op">**</span>(n <span class="op">-</span> y)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loglike(n, y, theta):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y<span class="op">*</span>np.log(theta) <span class="op">+</span> (n<span class="op">-</span>y)<span class="op">*</span>np.log(<span class="dv">1</span><span class="op">-</span>theta)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>thetas <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="fl">0.99</span>, num<span class="op">=</span><span class="dv">99</span>, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax.plot(thetas, loglike(n<span class="op">=</span><span class="dv">400</span>, y<span class="op">=</span><span class="dv">72</span>, theta<span class="op">=</span>thetas))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_03_frequentist_inference_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -809,8 +847,8 @@ L(\theta \mid \mathbf{y}) = \prod_{i=1}^{N} \theta^{y_{i}}\ (1 - \theta)^{1 - y_
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/01_concepts_and_data_analysis/01_04_tossing_a_coin.html" class="pagination-link" aria-label="Tossing a coin">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tossing a coin</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
