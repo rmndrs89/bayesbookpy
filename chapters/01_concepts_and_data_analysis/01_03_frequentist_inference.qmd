@@ -122,3 +122,23 @@ p_mortality = 72 / 400.
 ```
 
 This results in $\hat{p}$ = `{python} p_mortality` as the MLE of the probability.
+
+
+## Plotting the likelihoood
+
+```{python}
+def likelihood(n: int, y: int, theta: float | np.ndarray[float]) -> float | np.ndarray[float]:
+    return theta**y + (1 - theta)**(n - y)
+
+def loglike(n, y, theta):
+    return y*np.log(theta) + (n-y)*np.log(1-theta)
+
+thetas = np.linspace(0.01, 0.99, num=99, endpoint=True)
+fig, ax = plt.subplots()
+ax.plot(thetas, loglike(n=400, y=72, theta=thetas))
+plt.show()
+```
+
+
+
+
