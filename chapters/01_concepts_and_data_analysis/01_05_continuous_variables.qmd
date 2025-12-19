@@ -1,0 +1,26 @@
+# Examples: continuous variables
+
+## Exponential data
+Suppose we are waiting for a bus that is supposed to come every ten minutes. We can model this waiting time with the **exponential distribution**:
+$$
+Y \sim \mbox{Exp}(\lambda)
+$$
+where $\mathbb{E}[Y] = 1 / \lambda$ and $\mathbb{V}[Y] = 1 / \lambda^{2}$.
+
+It turns out that the Gamma distribution is conjugate to the exponential distribution:
+$$
+\lambda \sim \mbox{Gamma}(a, b)
+$$
+with $\mathbb{E}[\lambda] = a / b$ and $\mathbb{V}[\lambda]=a / b^{2}$
+
+Thus if we expect the bus to come around every ten minutes, we need $a / b = 1 / 10$ or $b = 10a$.
+
+Suppose that we wait for 12 minutes and the bus arrives. How can we update our belief of $\lambda$, that is the expected waiting time? Using Bayes' theorem we have:
+$$
+\begin{align}
+p(\lambda \mid y) &\propto p(y \mid \lambda)\ p(\lambda) \\
+ &\propto \lambda e^{-\lambda y} \lambda^{a-1} e^{-b \lambda} \\
+ &\propto \lambda^{(a+1)-1}\ e^{-(b + \lambda) y} \\
+\lambda \mid y &\sim \mbox{Gamma}(a+1, b+y)
+\end{align}
+$$
