@@ -120,13 +120,24 @@
     ]
   },
   {
+    "objectID": "chapters/01_concepts_and_data_analysis/01_05_continuous_variables.html",
+    "href": "chapters/01_concepts_and_data_analysis/01_05_continuous_variables.html",
+    "title": "5  Examples: continuous variables",
+    "section": "",
+    "text": "5.1 Exponential data\nSuppose we are waiting for a bus that is supposed to come every ten minutes. We can model this waiting time with the exponential distribution: \\[\nY \\sim \\mbox{Exp}(\\lambda)\n\\] where \\(\\mathbb{E}[Y] = 1 / \\lambda\\) and \\(\\mathbb{V}[Y] = 1 / \\lambda^{2}\\).\nIt turns out that the Gamma distribution is conjugate to the exponential distribution: \\[\n\\lambda \\sim \\mbox{Gamma}(a, b)\n\\] with \\(\\mathbb{E}[\\lambda] = a / b\\) and \\(\\mathbb{V}[\\lambda]=a / b^{2}\\)\nThus if we expect the bus to come around every ten minutes, we need \\(a / b = 1 / 10\\) or \\(b = 10a\\).\nSuppose that we wait for 12 minutes and the bus arrives. How can we update our belief of \\(\\lambda\\), that is the expected waiting time? Using Bayes’ theorem we have: \\[\n\\begin{align}\np(\\lambda \\mid y) &\\propto p(y \\mid \\lambda)\\ p(\\lambda) \\\\\n&\\propto \\lambda e^{-\\lambda y} \\lambda^{a-1} e^{-b \\lambda} \\\\\n&\\propto \\lambda^{(a+1)-1}\\ e^{-(b + \\lambda) y} \\\\\n\\lambda \\mid y &\\sim \\mbox{Gamma}(a+1, b+y)\n\\end{align}\n\\]",
+    "crumbs": [
+      "Concepts and Data Analysis",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Examples: continuous variables</span>"
+    ]
+  },
+  {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "5  Summary",
+    "title": "6  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
